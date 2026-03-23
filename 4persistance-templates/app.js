@@ -4,21 +4,24 @@ const cookieP = require("cookie-parser");
 const helloHandler = require("./handlers/hello-handler");
 const consolidate=require('consolidate');
 const byeHandler = require("./handlers/bye-handler");
+const counterHandler = require("./handlers/counter-handler");
 
 const app = express();
 app.use(bodyP.urlencoded({ extended: false })).use(cookieP());
 app.use("/s", express.static("static"));
-app.engine('html',consolidate.nunjucks); 
-app.set('view engine', 'nunjucks');
+app.engine("html", consolidate.nunjucks);
+app.set("view engine", "nunjucks");
 
-app.get('/signin', (req, res)=> {
+app.get("/signin", (req, res) => {
   res.sendFile(__dirname + "/static/form.html");
-})
+});
 
 //app.get('/hello', helloHandler )
-app.post('/hello', helloHandler)
-//app.get('/bye', byeHandler) 
-app.post('/bye', byeHandler);
+app.post("/hello", helloHandler);
+//app.get('/bye', byeHandler)
+app.post("/bye", byeHandler);
+
+app.get("/:name/count/:cnt", counterHandler);
 
 app.all('/', (req, res, next)=> {
   res.redirect("/signin");
