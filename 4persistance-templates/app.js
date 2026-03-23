@@ -5,6 +5,7 @@ const helloHandler = require("./handlers/hello-handler");
 const consolidate=require('consolidate');
 const byeHandler = require("./handlers/bye-handler");
 const counterHandler = require("./handlers/counter-handler");
+const cookieMonsterHandler = require("./handlers/cookie-monster-hanlder");
 
 const app = express();
 app.use(bodyP.urlencoded({ extended: false })).use(cookieP());
@@ -22,6 +23,8 @@ app.post("/hello", helloHandler);
 app.post("/bye", byeHandler);
 
 app.get("/:name/count/:cnt", counterHandler);
+
+app.get("/cookie-monster", cookieMonsterHandler);
 
 app.all('/', (req, res, next)=> {
   res.redirect("/signin");

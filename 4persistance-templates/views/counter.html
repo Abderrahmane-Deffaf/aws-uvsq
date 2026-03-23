@@ -8,6 +8,29 @@
 <body>
   <h1>Counter for {{ name }}</h1>
   <p>Count: {{ cnt }}</p>
-  <a href="/{{ name }}/count/{{ cnt }}">Increment</a>
+  <a href="/cookie-monster?name={{ name }}">Increment</a>
+  <div>
+    <p>Cookies Count: {{ cnt }}</p>
+    {% if cnt >= 1000000 %}
+      <p>Congratulations! You've reached 1,000,000!</p>
+    {% endif %}
+  </div>
+  <div>
+    <p >Local Storage Count</p>
+    <p  id="localStorageCount"></p>
+    <p id="win"></p>
+  </div>
+  <script>
+    const secondCounter = localStorage.getItem("secondCounter") ;
+    if (!secondCounter) {
+      localStorage.setItem("secondCounter", 1);
+    }else {
+      localStorage.setItem("secondCounter", parseInt(secondCounter) + 1);
+    }
+    document.getElementById("localStorageCount").textContent = localStorage.getItem("secondCounter");
+    if (localStorage.getItem("secondCounter") >= 1000000) {
+      document.getElementById("win").textContent = "Congratulations! You've reached 1,000,000 in local storage!";
+    }
+  </script>
 </body>
 </html>
