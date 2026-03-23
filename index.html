@@ -111,6 +111,18 @@
       flex: 1;
     }
 
+    .card-note {
+      margin: -0.35rem 0 0;
+      color: var(--text);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .card code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
     .card a {
       display: inline-flex;
       align-items: center;
@@ -165,7 +177,9 @@
       <h1>Accueil des applications web</h1>
       <p class="intro">
         Cette page rassemble les projets a consulter en priorite : un mini CV,
-        une page de recherche HTML/CSS et un jeu Puissance 4 en JavaScript.
+        une page de recherche HTML/CSS, un jeu Puissance 4 en JavaScript,
+        un TD Node.js autour d'un reflecteur HTTP et un TD sur la persistance
+        simple avec templates.
       </p>
     </section>
 
@@ -199,12 +213,38 @@
         </p>
         <a href="./2javascript/index.html">Jouer maintenant</a>
       </article>
+
+      <article class="card">
+        <span class="tag">3app-reflecteur</span>
+        <h2>Reflecteur HTTP</h2>
+        <p>
+          Un TD en Node.js et Express pour comprendre le traitement d'une
+          requete HTTP en affichant la chaine de requete, les donnees de
+          formulaire, les en-tetes et les cookies recus par le serveur.
+        </p>
+      </article>
+
+      <article class="card">
+        <span class="tag">4persistance-templates</span>
+        <h2>Persistance et templates</h2>
+        <p>
+          Un TD Express qui combine formulaire, rendu dynamique avec Nunjucks
+          et persistance simple via cookies. Il contient une page
+          <code>/signin</code>, des vues <code>hello</code> et
+          <code>bye</code>, un compteur par URL et une route qui memorise
+          le compteur de visite.
+        </p>
+        <p class="card-note">
+          Acces : lancer le serveur du dossier puis ouvrir
+          <code>/signin</code>.
+        </p>
+      </article>
     </section>
 
     <section class="summary">
       Utilise cette page comme point d'entree du projet : chaque carte ouvre
-      directement une application precise sans modifier la structure actuelle
-      des dossiers.
+      directement une application precise ou resume un TD a lancer via son
+      serveur Node.js, sans modifier la structure actuelle des dossiers.
     </section>
   </main>
 </body>
