@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  {% if color == 'red' %}
+    <style>li {color: red;}</style>
+  {% else %}
+    <style>li {color: rgb(188, 188, 85);}</style>
+  {% endif %} 
+  <p>Hello {{name}}!</p>
+  <ul> 
+    {% for fruit in fruits %} 
+      <li>{{ fruit }}</li> 
+    {% endfor %} 
+  </ul>
+  <div>
+    <a href="/bye?nickName={{name}}">Say Bye</a>
+  </div>
+</body>
+</html>
