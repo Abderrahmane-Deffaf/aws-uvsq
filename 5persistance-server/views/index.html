@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+</head>
+<body>
+  <h1>Welcome to the App 
+    {% if user %}
+      {{ user }}
+    {% else %}
+      Guest
+    {% endif %}
+  </h1>
+  <form action="" method="post">
+    <label for="login">Login:</label>
+    <input type="text" id="login" name="login">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <button type="submit">Sign In</button>
+  </form>
+  <div>Or:</div>
+  <p><a href="/users-list">View Users List</a></p>
+  <p><a href="/signin">Sign Up</a></p>
+  <form action="/logout" method="post">
+    <button type="submit">Logout</button>
+  </form>
+</body>
+</html>
