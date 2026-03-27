@@ -3,34 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In</title>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <form action="" method="post">
-    <div>
-      <label for="login">Login:</label>
-      <input type="text" id="login" name="login">
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password">
-    </div>
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
-    </div>
-    <div>
-      <label for="color1">Favorite Color:</label>
-      <input type="color" id="color1" name="color1">
-    </div>
-    <div>
-      <label for="color2">Second Favorite Color:</label>
-      <input type="color" id="color2" name="color2">
-    </div>
-    {% if error %}
-      <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <button type="submit">Sign In</button>
-  </form>
+<body class="page page-auth">
+  <main class="shell shell-split">
+    <section class="panel panel-intro">
+      <p class="eyebrow">Create User</p>
+      <h1>Register a user record for the demo database.</h1>
+      <p class="lead">
+        This form stores an account, a display name, and two favorite colors to
+        make the saved data easier to present visually.
+      </p>
+
+      <div class="session-card">
+        <span class="session-label">Portfolio note</span>
+        <strong>Simple and focused</strong>
+        <p>
+          The interface stays intentionally minimal so the persistence and session
+          flow remain the main part of the demo.
+        </p>
+      </div>
+
+      <div class="inline-links">
+        <a href="/">Back home</a>
+        <a href="/users-list">Open users list</a>
+      </div>
+    </section>
+
+    <section class="panel panel-form">
+      <div class="panel-heading">
+        <p class="eyebrow">Sign up</p>
+        <h2>Create a new account</h2>
+      </div>
+
+      <form class="auth-form" action="" method="post">
+        <label for="login">Email</label>
+        <input type="email" id="login" name="login" autocomplete="email" required value="{{ form.login }}">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" required>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name" value="{{ form.name }}">
+
+        <div class="color-fields">
+          <div>
+            <label for="color1">Favorite color</label>
+            <input type="color" id="color1" name="color1" value="{{ form.color1 or '#566b5f' }}">
+          </div>
+          <div>
+            <label for="color2">Second favorite color</label>
+            <input type="color" id="color2" name="color2" value="{{ form.color2 or '#d2b48c' }}">
+          </div>
+        </div>
+
+        {% if error %}
+          <p class="form-error">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit" class="button">Create account</button>
+      </form>
+    </section>
+  </main>
 </body>
 </html>

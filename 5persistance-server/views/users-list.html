@@ -4,17 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Users List</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <h1>Users List</h1>
-  <ul style="display: flex; flex-direction: column; gap: 10px;">
-    {% for user in users %}
-      <div >
-        <li>{{ user.login }} ({{ user.password }})</li>
-        <li>{{ user.name }} {{ user.color1 }} {{ user.color2 }}</li>
+<body class="page page-list">
+  <main class="shell shell-list">
+    <header class="list-header">
+      <div>
+        <p class="eyebrow">Protected Route</p>
+        <h1>Registered users</h1>
+        <p class="lead">
+          Accounts stored in SQLite and exposed only after login through the
+          current session.
+        </p>
       </div>
-    {% endfor %}
-  </ul>
-  <a href="/">Back to Home</a>
+
+      <div class="header-actions">
+        <a href="/" class="button button-ghost button-link">Home</a>
+        <form action="/logout" method="post">
+          <button type="submit" class="button button-ghost">Logout</button>
+        </form>
+      </div>
+    </header>
+
+    <section class="user-grid">
+      {% for user in users %}
+        <article class="user-card">
+          <div class="user-card-head">
+            <div>
+              <h2>
+                {% if user.name %}
+                  {{ user.name }}
+                {% else %}
+                  Unnamed user
+                {% endif %}
+              </h2>
+              <p>{{ user.login }}</p>
+            </div>
+          </div>
+
+          {% if user.color1 or user.color2 %}
+            <div class="swatch-row">
+              {% if user.color1 %}
+                <span class="swatch" style="--swatch-color: {{ user.color1 }};">
+                  <span class="swatch-dot"></span>
+                  {{ user.color1 }}
+                </span>
+              {% endif %}
+
+              {% if user.color2 %}
+                <span class="swatch" style="--swatch-color: {{ user.color2 }};">
+                  <span class="swatch-dot"></span>
+                  {{ user.color2 }}
+                </span>
+              {% endif %}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  </main>
 </body>
 </html>

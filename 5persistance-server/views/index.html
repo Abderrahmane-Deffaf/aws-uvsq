@@ -3,31 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
+  <title>Session Demo</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <h1>Welcome to the App 
-    {% if user %}
-      {{ user }}
-    {% else %}
-      Guest
-    {% endif %}
-  </h1>
-  <form action="" method="post">
-    <label for="login">Login:</label>
-    <input type="text" id="login" name="login">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
-    {% if error %}
-      <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <button type="submit">Sign In</button>
-  </form>
-  <div>Or:</div>
-  <p><a href="/users-list">View Users List</a></p>
-  <p><a href="/signin">Sign Up</a></p>
-  <form action="/logout" method="post">
-    <button type="submit">Logout</button>
-  </form>
+<body class="page page-auth">
+  <main class="shell shell-split">
+    <section class="panel panel-intro">
+      <p class="eyebrow">Persistence Server</p>
+      <h1>Simple session-based access for saved users.</h1>
+      <p class="lead">
+        A lightweight Express and SQLite demo for signup, login, persisted users,
+        and a protected route backed by sessions.
+      </p>
+
+      <div class="session-card">
+        <span class="session-label">Current session</span>
+        <strong>
+          {% if user %}
+            {{ user }}
+          {% else %}
+            Guest
+          {% endif %}
+        </strong>
+        <p>
+          {% if user %}
+            You already have an active session and can open the users list directly.
+          {% else %}
+            Sign in with an existing account to reach the protected users list.
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="inline-links">
+        <a href="/users-list">Browse users</a>
+        <a href="/signin">Create account</a>
+      </div>
+    </section>
+
+    <section class="panel panel-form">
+      <div class="panel-heading">
+        <p class="eyebrow">Login</p>
+        <h2>Access your account</h2>
+      </div>
+
+      <form class="auth-form" action="" method="post">
+        <label for="login">Email</label>
+        <input type="email" id="login" name="login" autocomplete="email" required value="{{ loginValue }}">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+
+        {% if error %}
+          <p class="form-error">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit" class="button">Sign in</button>
+      </form>
+
+      <form action="/logout" method="post" class="secondary-action">
+        <button type="submit" class="button button-ghost">Logout</button>
+      </form>
+    </section>
+  </main>
 </body>
 </html>
